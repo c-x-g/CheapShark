@@ -21,7 +21,7 @@ class Search {
       this.result = res.data;
 
       for (let i = 0; i < this.result.length; i++) {
-        console.log(res.data[i].dealRating);
+        // console.log(res.data[i].dealRating);
       }
     } catch (error) {
       alert(error);

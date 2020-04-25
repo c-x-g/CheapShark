@@ -12,6 +12,11 @@ const tempBanners = fs.readFileSync(`${__dirname}/src/templates/banners.html`, '
 
 const search = new Search('');
 
+// express configurations
+const express = require('express');
+const app = express();
+const serverPort = 8000;
+
 async function downloadImage(url, img_name) {
   const local = path.resolve(__dirname, 'banners', img_name);
   const writer = fs.createWriteStream(local);
@@ -85,6 +90,20 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(8000, '127.0.0.1', () => {
-  console.log('Listening to requests on port 8000');
+// server.listen(8000, '127.0.0.1', () => {
+//   console.log('Listening to requests on port 8000');
+// });
+
+app.listen(serverPort, () => {
+  console.log('Server running on port 8000');
+});
+
+app.get('/url', (req, res, next) => {
+  let json = {
+    userId: 'joe123',
+    name: 'Joe',
+    address: 'billy123',
+  };
+
+  res.json(json);
 });
